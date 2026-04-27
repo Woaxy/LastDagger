@@ -1,0 +1,9 @@
+{
+    "dotnet.defaultSolution": "1.sln",
+    "files.exclude": {
+        "**/*.rpyc": true,
+        "**/*.rpa": true,
+        "**/*.rpymc": true,
+        "**/cache/": true
+    }
+}
