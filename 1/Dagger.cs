@@ -9,7 +9,7 @@ namespace FinalProject
         public Rectangle Bounds => new Rectangle((int)Position.X, (int)Position.Y, 20, 5);
         
         private float _speed = 700f;
-        private int _direction; // 1 sağ, -1 sol
+        private int _direction; 
         private Texture2D _texture;
 
         public Dagger(Vector2 startPosition, int direction, Texture2D texture)
@@ -22,7 +22,7 @@ namespace FinalProject
         public void Update(GameTime gameTime)
         {
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Position.X += _speed * _direction * dt; // Hançer fırlatma hareketi
+            Position.X += _speed * _direction * dt;
         }
 
         public void Draw(SpriteBatch spriteBatch)

@@ -31,3 +31,4 @@ c:\Users\user\Desktop\DaggerII\1\obj\Debug\net8.0\refint\1.dll
 c:\Users\user\Desktop\DaggerII\1\obj\Debug\net8.0\1.pdb
 c:\Users\user\Desktop\DaggerII\1\obj\Debug\net8.0\1.genruntimeconfig.cache
 c:\Users\user\Desktop\DaggerII\1\obj\Debug\net8.0\ref\1.dll
+c:\Users\user\Desktop\DaggerII\1\obj\Debug\net8.0\1.sourcelink.json

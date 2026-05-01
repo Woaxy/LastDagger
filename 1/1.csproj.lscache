@@ -54,7 +54,9 @@ TemporaryDependencyNodeTargetIdentifier=net8.0
 /warnaserror+:NU1605,SYSLIB0011
 
 [sourceFiles]
+Collectible.cs
 Dagger.cs
+Enemy.cs
 Game1.cs
 InputManager.cs
 obj/Debug/net8.0/
