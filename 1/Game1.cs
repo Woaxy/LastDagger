@@ -21,7 +21,10 @@ namespace FinalProject
         private List<Collectible> _collectibles = new List<Collectible>();
 
         private Texture2D _pixel;
-        private int _currentLevel = 1; 
+        private SpriteFont _font; 
+        
+        private int _currentLevel = 1;
+        private float _timer = 120f; // 120 seconds
 
         public Game1()
         {
@@ -35,8 +38,11 @@ namespace FinalProject
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            
             _pixel = new Texture2D(GraphicsDevice, 1, 1);
             _pixel.SetData(new[] { Color.White });
+
+            _font = Content.Load<SpriteFont>("Font");
 
             ResetGame();
         }
@@ -44,6 +50,7 @@ namespace FinalProject
         private void ResetGame()
         {
             _currentLevel = 1;
+            _timer = 120f; 
             _player = new Player(_pixel, new Vector2(100, 800));
             LoadLevel(_currentLevel);
         }
@@ -58,7 +65,6 @@ namespace FinalProject
             _player.Position = new Vector2(50, 800); 
             _player.Velocity = Vector2.Zero;
 
-            // Ortak Zemin
             _platforms.Add(new Platform(new Rectangle(0, 950, 400, 130), _pixel, Color.DarkGray));
 
             switch (level)
@@ -66,21 +72,19 @@ namespace FinalProject
                 case 1:
                     _platforms.Add(new Platform(new Rectangle(600, 800, 400, 50), _pixel, Color.Gray));
                     _platforms.Add(new Platform(new Rectangle(1200, 650, 400, 50), _pixel, Color.Gray));
-                    _enemies.Add(new Enemy(new Vector2(700, 720), 100f, _pixel)); // 1. Düşman
+                    _enemies.Add(new Enemy(new Vector2(700, 720), 100f, _pixel)); 
                     break;
                 case 2:
                     _platforms.Add(new Platform(new Rectangle(500, 750, 200, 50), _pixel, Color.Gray));
                     _platforms.Add(new Platform(new Rectangle(900, 600, 500, 50), _pixel, Color.Gray));
-                    _enemies.Add(new Enemy(new Vector2(1000, 520), 150f, _pixel)); // Devriye atan düşman
                     _platforms.Add(new Platform(new Rectangle(1600, 850, 300, 50), _pixel, Color.Gray));
+                    _enemies.Add(new Enemy(new Vector2(1000, 520), 150f, _pixel)); 
                     break;
                 case 3:
                     _platforms.Add(new Platform(new Rectangle(500, 850, 300, 50), _pixel, Color.Gray));
                     _platforms.Add(new Platform(new Rectangle(1000, 700, 300, 50), _pixel, Color.Gray));
                     _platforms.Add(new Platform(new Rectangle(1500, 550, 300, 50), _pixel, Color.Gray));
-                    
                     _enemies.Add(new Enemy(new Vector2(1050, 620), 50f, _pixel)); 
-                    
                     _collectibles.Add(new Collectible(new Rectangle(1650, 500, 40, 40), _pixel, true));
                     break;
             }
@@ -112,6 +116,9 @@ namespace FinalProject
 
         private void UpdatePlayingState(GameTime gameTime)
         {
+            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            
+            _timer -= dt;
             _player.Update(gameTime);
 
             if (InputManager.IsKeyPressed(Keys.F) && _player.DaggerCount > 0)
@@ -134,10 +141,7 @@ namespace FinalProject
                     _currentLevel++;
                     LoadLevel(_currentLevel);
                 }
-                else
-                {
-                    _player.Position.X = 1920 - _player.Bounds.Width; 
-                }
+                else _player.Position.X = 1920 - _player.Bounds.Width;
             }
 
             HandleCollisions();
@@ -145,9 +149,13 @@ namespace FinalProject
             if (_player.Position.Y > 1100) 
             {
                 _player.TakeDamage();
-                _player.Position = new Vector2(50, 800);
+                _player.Position = new Vector2(50, 800); 
             }
-            if (_player.Lives <= 0) _currentState = GameState.GameOver;
+            
+            if (_player.Lives <= 0 || _timer <= 0) 
+            {
+                _currentState = GameState.GameOver;
+            }
         }
 
         private void HandleCollisions()
@@ -180,20 +188,15 @@ namespace FinalProject
 
             foreach (var enemy in _enemies)
             {
-                if (_player.Bounds.Intersects(enemy.Bounds))
-                {
-                    _player.TakeDamage();
-                }
+                if (_player.Bounds.Intersects(enemy.Bounds)) _player.TakeDamage();
             }
 
             for (int i = _collectibles.Count - 1; i >= 0; i--)
             {
                 if (_player.Bounds.Intersects(_collectibles[i].Bounds))
                 {
-                    if (_collectibles[i].IsGoal)
-                        _currentState = GameState.Win; 
-                    else
-                        _player.DaggerCount += 1; 
+                    if (_collectibles[i].IsGoal) _currentState = GameState.Win; 
+                    else _player.DaggerCount ++; 
                         
                     _collectibles.RemoveAt(i);
                 }
@@ -208,13 +211,36 @@ namespace FinalProject
 
             _spriteBatch.Begin();
 
-            if (_currentState == GameState.Playing)
+            switch (_currentState)
             {
-                foreach (var p in _platforms) p.Draw(_spriteBatch);
-                foreach (var e in _enemies) e.Draw(_spriteBatch);
-                foreach (var c in _collectibles) c.Draw(_spriteBatch);
-                foreach (var d in _daggers) d.Draw(_spriteBatch);
-                _player.Draw(_spriteBatch);
+                case GameState.MainMenu:
+                    _spriteBatch.DrawString(_font, "LAST DAGGER", new Vector2(800, 400), Color.White);
+                    _spriteBatch.DrawString(_font, "Press ENTER to Start", new Vector2(820, 450), Color.White);
+                    break;
+
+                case GameState.Playing:
+                    foreach (var p in _platforms) p.Draw(_spriteBatch);
+                    foreach (var e in _enemies) e.Draw(_spriteBatch);
+                    foreach (var c in _collectibles) c.Draw(_spriteBatch);
+                    foreach (var d in _daggers) d.Draw(_spriteBatch);
+                    _player.Draw(_spriteBatch);
+
+                    // English UI 
+                    _spriteBatch.DrawString(_font, $"LIVES: {_player.Lives}", new Vector2(30, 30), Color.White);
+                    _spriteBatch.DrawString(_font, $"DAGGERS: {_player.DaggerCount}", new Vector2(30, 70), Color.White);
+                    _spriteBatch.DrawString(_font, $"LEVEL: {_currentLevel}", new Vector2(900, 30), Color.White);
+                    _spriteBatch.DrawString(_font, $"TIME: {(int)_timer}", new Vector2(1750, 30), Color.White);
+                    break;
+
+                case GameState.GameOver:
+                    _spriteBatch.DrawString(_font, "GAME OVER!", new Vector2(850, 400), Color.White);
+                    _spriteBatch.DrawString(_font, "Press ENTER to Try Again", new Vector2(800, 450), Color.White);
+                    break;
+
+                case GameState.Win:
+                    _spriteBatch.DrawString(_font, "YOU WIN!", new Vector2(880, 400), Color.Black);
+                    _spriteBatch.DrawString(_font, "Press ENTER to Play Again", new Vector2(800, 450), Color.Black);
+                    break;
             }
 
             _spriteBatch.End();
