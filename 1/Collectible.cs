@@ -18,8 +18,7 @@ namespace FinalProject
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Color color = IsGoal ? Color.Gold : Color.LightGray;
-            spriteBatch.Draw(_texture, Bounds, color);
+            spriteBatch.Draw(_texture, Bounds, Color.White);
         }
     }
 }

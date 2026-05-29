@@ -22,9 +22,15 @@ namespace FinalProject
 
         private Texture2D _pixel;
         private SpriteFont _font; 
+
+        private Texture2D _daggerSprite;
+        private Texture2D _goldDaggerSprite;
+
+        private Texture2D _enemyWalkSprite;
+        private Texture2D _enemyDeathSprite;
         
         private int _currentLevel = 1;
-        private float _timer = 120f; // 120 seconds
+        private float _timer = 120f; 
 
         public Game1()
         {
@@ -44,6 +50,12 @@ namespace FinalProject
 
             _font = Content.Load<SpriteFont>("Font");
 
+            _daggerSprite = Content.Load<Texture2D>("dagger");
+            _goldDaggerSprite = Content.Load<Texture2D>("gold_dagger");
+
+            _enemyWalkSprite = Content.Load<Texture2D>("enemy_patrol");
+            _enemyDeathSprite = Content.Load<Texture2D>("enemy_death");
+
             ResetGame();
         }
 
@@ -51,7 +63,9 @@ namespace FinalProject
         {
             _currentLevel = 1;
             _timer = 120f; 
-            _player = new Player(_pixel, new Vector2(100, 800));
+
+            _player = new Player(Content, new Vector2(100, 800)); 
+
             LoadLevel(_currentLevel);
         }
 
@@ -72,20 +86,20 @@ namespace FinalProject
                 case 1:
                     _platforms.Add(new Platform(new Rectangle(600, 800, 400, 50), _pixel, Color.Gray));
                     _platforms.Add(new Platform(new Rectangle(1200, 650, 400, 50), _pixel, Color.Gray));
-                    _enemies.Add(new Enemy(new Vector2(700, 720), 100f, _pixel)); 
+                    _enemies.Add(new Enemy(_enemyWalkSprite, _enemyDeathSprite, new Vector2(700, 720), 100f, _platforms)); 
                     break;
                 case 2:
                     _platforms.Add(new Platform(new Rectangle(500, 750, 200, 50), _pixel, Color.Gray));
                     _platforms.Add(new Platform(new Rectangle(900, 600, 500, 50), _pixel, Color.Gray));
                     _platforms.Add(new Platform(new Rectangle(1600, 850, 300, 50), _pixel, Color.Gray));
-                    _enemies.Add(new Enemy(new Vector2(1000, 520), 150f, _pixel)); 
+                    _enemies.Add(new Enemy(_enemyWalkSprite, _enemyDeathSprite, new Vector2(1000, 520), 150f, _platforms)); 
                     break;
                 case 3:
                     _platforms.Add(new Platform(new Rectangle(500, 850, 300, 50), _pixel, Color.Gray));
                     _platforms.Add(new Platform(new Rectangle(1000, 700, 300, 50), _pixel, Color.Gray));
                     _platforms.Add(new Platform(new Rectangle(1500, 550, 300, 50), _pixel, Color.Gray));
-                    _enemies.Add(new Enemy(new Vector2(1050, 620), 50f, _pixel)); 
-                    _collectibles.Add(new Collectible(new Rectangle(1650, 500, 40, 40), _pixel, true));
+                    _enemies.Add(new Enemy(_enemyWalkSprite, _enemyDeathSprite, new Vector2(1050, 620), 50f, _platforms)); 
+                    _collectibles.Add(new Collectible(new Rectangle(1650, 500, 40, 40), _goldDaggerSprite, true));
                     break;
             }
         }
@@ -121,13 +135,27 @@ namespace FinalProject
             _timer -= dt;
             _player.Update(gameTime);
 
+
             if (InputManager.IsKeyPressed(Keys.F) && _player.DaggerCount > 0)
             {
-                _daggers.Add(new Dagger(_player.Position + new Vector2(20, 30), _player.FacingDirection, _pixel));
+                _player.StartAttack(); 
+            }
+
+            if (_player.CanThrowDagger() && _player.DaggerCount > 0)
+            {
+                _daggers.Add(new Dagger(_player.Position + new Vector2(20, 60), _player.FacingDirection, _daggerSprite));
                 _player.DaggerCount--;
             }
 
-            foreach (var enemy in _enemies) enemy.Update(gameTime);
+            for (int i = _enemies.Count - 1; i >= 0; i--)
+            {
+                _enemies[i].Update(gameTime); 
+                
+                if (_enemies[i].State == EnemyState.Dead)
+                {
+                    _enemies.RemoveAt(i);
+                }
+            }
             for (int i = _daggers.Count - 1; i >= 0; i--)
             {
                 _daggers[i].Update(gameTime);
@@ -174,12 +202,12 @@ namespace FinalProject
 
             for (int i = _daggers.Count - 1; i >= 0; i--)
             {
-                for (int j = _enemies.Count - 1; j >= 0; j--)
+                for (int j = 0; j < _enemies.Count; j++)
                 {
-                    if (_daggers[i].Bounds.Intersects(_enemies[j].Bounds))
+                    if (_enemies[j].State == EnemyState.Patrolling && _enemies[j].Bounds.Intersects(_daggers[i].Bounds))
                     {
-                        _collectibles.Add(new Collectible(new Rectangle((int)_enemies[j].Position.X, (int)_enemies[j].Position.Y + 60, 20, 10), _pixel, false));
-                        _enemies.RemoveAt(j);
+                        _collectibles.Add(new Collectible(new Rectangle((int)_enemies[j].Position.X, (int)_enemies[j].Position.Y + 60, 30, 30), _daggerSprite, false));
+                        _enemies[j].StartDeath();
                         _daggers.RemoveAt(i);
                         break; 
                     }
@@ -209,7 +237,7 @@ namespace FinalProject
             else if (_currentState == GameState.Win) GraphicsDevice.Clear(Color.Gold);
             else GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
             switch (_currentState)
             {
