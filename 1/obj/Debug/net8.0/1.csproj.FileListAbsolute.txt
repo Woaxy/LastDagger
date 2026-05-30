@@ -32,3 +32,21 @@ c:\Users\user\Desktop\DaggerII\1\obj\Debug\net8.0\1.pdb
 c:\Users\user\Desktop\DaggerII\1\obj\Debug\net8.0\1.genruntimeconfig.cache
 c:\Users\user\Desktop\DaggerII\1\obj\Debug\net8.0\ref\1.dll
 c:\Users\user\Desktop\DaggerII\1\obj\Debug\net8.0\1.sourcelink.json
+c:\Users\user\Desktop\DaggerII\1\bin\Debug\net8.0\Content\Font.xnb
+c:\Users\user\Desktop\DaggerII\1\bin\Debug\net8.0\Content\dagger.xnb
+c:\Users\user\Desktop\DaggerII\1\bin\Debug\net8.0\Content\gold_dagger.xnb
+c:\Users\user\Desktop\DaggerII\1\bin\Debug\net8.0\Content\player-Idle.xnb
+c:\Users\user\Desktop\DaggerII\1\bin\Debug\net8.0\Content\player-Jump.xnb
+c:\Users\user\Desktop\DaggerII\1\bin\Debug\net8.0\Content\player-Run.xnb
+c:\Users\user\Desktop\DaggerII\1\bin\Debug\net8.0\Content\player-Sword Slash.xnb
+c:\Users\user\Desktop\DaggerII\1\bin\Debug\net8.0\Content\enemy_death.xnb
+c:\Users\user\Desktop\DaggerII\1\bin\Debug\net8.0\Content\enemy_patrol.xnb
+c:\Users\user\Desktop\DaggerII\1\bin\Debug\net8.0\Content\tileset_blocks.xnb
+c:\Users\user\Desktop\DaggerII\1\bin\Debug\net8.0\Content\tileset_main.xnb
+c:\Users\user\Desktop\DaggerII\1\bin\Debug\net8.0\Content\tileset_main_1.xnb
+c:\Users\user\Desktop\DaggerII\1\bin\Debug\net8.0\Content\tileset_main_2.xnb
+c:\Users\user\Desktop\DaggerII\1\bin\Debug\net8.0\Content\tileset_main_3.xnb
+c:\Users\user\Desktop\DaggerII\1\bin\Debug\net8.0\Content\tileset_main_4.xnb
+c:\Users\user\Desktop\DaggerII\1\bin\Debug\net8.0\Content\back-structures.xnb
+c:\Users\user\Desktop\DaggerII\1\bin\Debug\net8.0\Content\background6.xnb
+c:\Users\user\Desktop\DaggerII\1\bin\Debug\net8.0\Content\clouds.xnb

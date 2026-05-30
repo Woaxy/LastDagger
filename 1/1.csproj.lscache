@@ -54,6 +54,7 @@ TemporaryDependencyNodeTargetIdentifier=net8.0
 /warnaserror+:NU1605,SYSLIB0011
 
 [sourceFiles]
+AnimationManager.cs
 Collectible.cs
 Dagger.cs
 Enemy.cs

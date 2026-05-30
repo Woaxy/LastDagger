@@ -1,1 +1,19 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"c:/Users/user/Desktop/DaggerII/1/Content/back-structures.png","c:/Users/user/Desktop/DaggerII/1/Content/bin/DesktopGL/Content/back-structures.xnb","TextureProcessor","Texture2DContent",5483,292949,0,1189332
+"c:/Users/user/Desktop/DaggerII/1/Content/background6.png","c:/Users/user/Desktop/DaggerII/1/Content/bin/DesktopGL/Content/background6.xnb","TextureProcessor","Texture2DContent",6568,135253,0,0036349
+"c:/Users/user/Desktop/DaggerII/1/Content/clouds.png","c:/Users/user/Desktop/DaggerII/1/Content/bin/DesktopGL/Content/clouds.xnb","TextureProcessor","Texture2DContent",6337,180309,0,0071718
+"c:/Users/user/Desktop/DaggerII/1/Content/dagger.png","c:/Users/user/Desktop/DaggerII/1/Content/bin/DesktopGL/Content/dagger.xnb","TextureProcessor","Texture2DContent",71955,1048661,0,0269833
+"c:/Users/user/Desktop/DaggerII/1/Content/enemy_death.png","c:/Users/user/Desktop/DaggerII/1/Content/bin/DesktopGL/Content/enemy_death.xnb","TextureProcessor","Texture2DContent",628,9301,0,0016891
+"c:/Users/user/Desktop/DaggerII/1/Content/enemy_patrol.png","c:/Users/user/Desktop/DaggerII/1/Content/bin/DesktopGL/Content/enemy_patrol.xnb","TextureProcessor","Texture2DContent",2684,276565,0,007579
+"c:/Users/user/Desktop/DaggerII/1/Content/Font.spritefont","c:/Users/user/Desktop/DaggerII/1/Content/bin/DesktopGL/Content/Font.xnb","FontDescriptionProcessor","SpriteFontContent",2068,21529,0,0758685
+"c:/Users/user/Desktop/DaggerII/1/Content/gold_dagger.png","c:/Users/user/Desktop/DaggerII/1/Content/bin/DesktopGL/Content/gold_dagger.xnb","TextureProcessor","Texture2DContent",93755,1048661,0,0198193
+"c:/Users/user/Desktop/DaggerII/1/Content/player-Idle.png","c:/Users/user/Desktop/DaggerII/1/Content/bin/DesktopGL/Content/player-Idle.xnb","TextureProcessor","Texture2DContent",2898,196693,0,0197438
+"c:/Users/user/Desktop/DaggerII/1/Content/player-Jump.png","c:/Users/user/Desktop/DaggerII/1/Content/bin/DesktopGL/Content/player-Jump.xnb","TextureProcessor","Texture2DContent",4073,196693,0,0074297
+"c:/Users/user/Desktop/DaggerII/1/Content/player-Run.png","c:/Users/user/Desktop/DaggerII/1/Content/bin/DesktopGL/Content/player-Run.xnb","TextureProcessor","Texture2DContent",8208,589909,0,0133873
+"c:/Users/user/Desktop/DaggerII/1/Content/player-Sword Slash.png","c:/Users/user/Desktop/DaggerII/1/Content/bin/DesktopGL/Content/player-Sword Slash.xnb","TextureProcessor","Texture2DContent",5142,294997,0,007642
+"c:/Users/user/Desktop/DaggerII/1/Content/tileset_blocks.png","c:/Users/user/Desktop/DaggerII/1/Content/bin/DesktopGL/Content/tileset_blocks.xnb","TextureProcessor","Texture2DContent",30808,743509,0,0143251
+"c:/Users/user/Desktop/DaggerII/1/Content/tileset_main_1.png","c:/Users/user/Desktop/DaggerII/1/Content/bin/DesktopGL/Content/tileset_main_1.xnb","TextureProcessor","Texture2DContent",1258,19917,0,0020579
+"c:/Users/user/Desktop/DaggerII/1/Content/tileset_main_2.png","c:/Users/user/Desktop/DaggerII/1/Content/bin/DesktopGL/Content/tileset_main_2.xnb","TextureProcessor","Texture2DContent",2479,31765,0,0026995
+"c:/Users/user/Desktop/DaggerII/1/Content/tileset_main_3.png","c:/Users/user/Desktop/DaggerII/1/Content/bin/DesktopGL/Content/tileset_main_3.xnb","TextureProcessor","Texture2DContent",1480,18301,0,0020598
+"c:/Users/user/Desktop/DaggerII/1/Content/tileset_main_4.png","c:/Users/user/Desktop/DaggerII/1/Content/bin/DesktopGL/Content/tileset_main_4.xnb","TextureProcessor","Texture2DContent",1566,22201,0,0016614
+"c:/Users/user/Desktop/DaggerII/1/Content/tileset_main.png","c:/Users/user/Desktop/DaggerII/1/Content/bin/DesktopGL/Content/tileset_main.xnb","TextureProcessor","Texture2DContent",6794,172117,0,0045806

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>c:/Users/user/Desktop/DaggerII/1/Content/back-structures.png</File>
+    <File>c:/Users/user/Desktop/DaggerII/1/Content/background6.png</File>
+    <File>c:/Users/user/Desktop/DaggerII/1/Content/clouds.png</File>
+    <File>c:/Users/user/Desktop/DaggerII/1/Content/dagger.png</File>
+    <File>c:/Users/user/Desktop/DaggerII/1/Content/enemy_death.png</File>
+    <File>c:/Users/user/Desktop/DaggerII/1/Content/enemy_patrol.png</File>
+    <File>c:/Users/user/Desktop/DaggerII/1/Content/Font.spritefont</File>
+    <File>c:/Users/user/Desktop/DaggerII/1/Content/gold_dagger.png</File>
+    <File>c:/Users/user/Desktop/DaggerII/1/Content/player-Idle.png</File>
+    <File>c:/Users/user/Desktop/DaggerII/1/Content/player-Jump.png</File>
+    <File>c:/Users/user/Desktop/DaggerII/1/Content/player-Run.png</File>
+    <File>c:/Users/user/Desktop/DaggerII/1/Content/player-Sword Slash.png</File>
+    <File>c:/Users/user/Desktop/DaggerII/1/Content/tileset_blocks.png</File>
+    <File>c:/Users/user/Desktop/DaggerII/1/Content/tileset_main_1.png</File>
+    <File>c:/Users/user/Desktop/DaggerII/1/Content/tileset_main_2.png</File>
+    <File>c:/Users/user/Desktop/DaggerII/1/Content/tileset_main_3.png</File>
+    <File>c:/Users/user/Desktop/DaggerII/1/Content/tileset_main_4.png</File>
+    <File>c:/Users/user/Desktop/DaggerII/1/Content/tileset_main.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>

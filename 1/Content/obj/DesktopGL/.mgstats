@@ -1,0 +1,4 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"c:/Users/user/Desktop/DaggerII/1/Content/back-structures.png","c:/Users/user/Desktop/DaggerII/1/Content/bin/DesktopGL/back-structures.xnb","TextureProcessor","Texture2DContent",5483,292949,0,1994104
+"c:/Users/user/Desktop/DaggerII/1/Content/background6.png","c:/Users/user/Desktop/DaggerII/1/Content/bin/DesktopGL/background6.xnb","TextureProcessor","Texture2DContent",6568,135253,0,007264
+"c:/Users/user/Desktop/DaggerII/1/Content/clouds.png","c:/Users/user/Desktop/DaggerII/1/Content/bin/DesktopGL/clouds.xnb","TextureProcessor","Texture2DContent",6337,180309,0,0097771
