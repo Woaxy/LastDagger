@@ -17,17 +17,20 @@ namespace FinalProject
         
         private AnimationManager _patrolAnim;
         private AnimationManager _deathAnim;
-        
         private Vector2 _velocity;
+        private float _speed;
         private List<Platform> _platforms;
         private int _facingDirection = 1;
+
+        private float _patrolTimer = 0f;
+        private float _patrolDuration = 1.7f; 
 
         public Enemy(Texture2D walkTex, Texture2D deathTex, Vector2 startPos, float speed, List<Platform> platforms)
         {
             Position = startPos;
             _platforms = platforms;
             
-            _velocity = new Vector2(speed, 0f); 
+            _speed = speed; 
 
             _patrolAnim = new AnimationManager(walkTex, 6, 0.12f, true); 
             _patrolAnim.Scale = 1.5f; 
@@ -42,30 +45,23 @@ namespace FinalProject
 
             if (State == EnemyState.Patrolling)
             {
-                Position.X += _velocity.X * _facingDirection * dt;
-                Rectangle nextBounds = new Rectangle(Bounds.X + (int)(_velocity.X * _facingDirection * dt), Bounds.Y, Bounds.Width, Bounds.Height);
-                int checkX = (_facingDirection == 1) ? nextBounds.Right : nextBounds.Left;
-                Rectangle nextGroundCheck = new Rectangle(checkX - 5, nextBounds.Bottom, 10, 5);
+                _patrolTimer += dt;
 
-                bool willBeOnPlatform = false;
-                foreach (var platform in _platforms)
+                if (_patrolTimer >= _patrolDuration)
                 {
-                    if (platform.Bounds.Intersects(nextGroundCheck))
-                    {
-                        willBeOnPlatform = true;
-                        break;
-                    }
+                    _facingDirection *= -1; 
+                    _patrolTimer = 0f;      
                 }
 
-                if (!willBeOnPlatform) _facingDirection *= -1; 
+                Position.X += _speed * _facingDirection * dt;
 
-                _patrolAnim.Position = new Vector2(Position.X, Position.Y - 15);
+                _patrolAnim.Position = new Vector2(Position.X, Position.Y);
                 _patrolAnim.Effect = (_facingDirection == 1) ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
                 _patrolAnim.Update(gameTime);
             }
             else if (State == EnemyState.Dying)
             {
-                _deathAnim.Position = Position;
+                _deathAnim.Position = new Vector2(Position.X, Position.Y);
                 _deathAnim.Update(gameTime);
 
                 if (_deathAnim.IsFinished)
@@ -74,7 +70,7 @@ namespace FinalProject
                 }
             }
         }
-
+        
         public void StartDeath()
         {
             if (State != EnemyState.Dying) 

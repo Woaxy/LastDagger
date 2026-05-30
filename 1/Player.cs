@@ -10,7 +10,30 @@ namespace FinalProject
         public Vector2 Position; 
         public Vector2 Velocity;
 
-        public Rectangle Bounds => new Rectangle((int)Position.X, (int)Position.Y, 50, 90);
+        public Rectangle Bounds
+        {
+            get
+            {
+                int hitboxGenisligi = 30; 
+                int xKaymasi = 0;
+
+                if (FacingDirection == 1)
+                {
+                    xKaymasi = 75; 
+                }
+                else
+                {
+                    xKaymasi = 80; 
+                }
+
+                return new Rectangle(
+                    (int)(Position.X + xKaymasi),
+                    (int)Position.Y,
+                    hitboxGenisligi,
+                    90 
+                );
+            }
+        }
         
         public int DaggerCount = 5;
         public int Lives = 3;

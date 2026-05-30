@@ -15,7 +15,6 @@ namespace FinalProject
         private GameState _currentState = GameState.MainMenu;
 
         private Player _player;
-        private List<Platform> _platforms = new List<Platform>();
         private List<Dagger> _daggers = new List<Dagger>();
         private List<Enemy> _enemies = new List<Enemy>();
         private List<Collectible> _collectibles = new List<Collectible>();
@@ -28,6 +27,14 @@ namespace FinalProject
 
         private Texture2D _enemyWalkSprite;
         private Texture2D _enemyDeathSprite;
+        private Texture2D _platform1; 
+        private Texture2D _platform2;
+        private Texture2D _platform3; 
+        private Texture2D _platform4; 
+        private Texture2D _bgClouds;
+        private Texture2D _bgDarkFacility;
+        private Texture2D _bgStructures;
+        private List<Platform> _platforms = new List<Platform>();
         
         private int _currentLevel = 1;
         private float _timer = 120f; 
@@ -56,6 +63,15 @@ namespace FinalProject
             _enemyWalkSprite = Content.Load<Texture2D>("enemy_patrol");
             _enemyDeathSprite = Content.Load<Texture2D>("enemy_death");
 
+            _platform1 = Content.Load<Texture2D>("tileset_main_1");
+            _platform2 = Content.Load<Texture2D>("tileset_main_2");
+            _platform3 = Content.Load<Texture2D>("tileset_main_3");
+            _platform4 = Content.Load<Texture2D>("tileset_main_4");
+
+            _bgClouds = Content.Load<Texture2D>("clouds");
+            _bgDarkFacility = Content.Load<Texture2D>("background6");
+            _bgStructures = Content.Load<Texture2D>("back-structures");
+
             ResetGame();
         }
 
@@ -73,33 +89,63 @@ namespace FinalProject
         {
             _platforms.Clear();
             _enemies.Clear();
-            _collectibles.Clear();
             _daggers.Clear();
+            _collectibles.Clear();
             
-            _player.Position = new Vector2(50, 800); 
+            _player.Position = new Vector2(100, 700); 
             _player.Velocity = Vector2.Zero;
-
-            _platforms.Add(new Platform(new Rectangle(0, 950, 400, 130), _pixel, Color.DarkGray));
 
             switch (level)
             {
                 case 1:
-                    _platforms.Add(new Platform(new Rectangle(600, 800, 400, 50), _pixel, Color.Gray));
-                    _platforms.Add(new Platform(new Rectangle(1200, 650, 400, 50), _pixel, Color.Gray));
-                    _enemies.Add(new Enemy(_enemyWalkSprite, _enemyDeathSprite, new Vector2(700, 720), 100f, _platforms)); 
+                    _platforms.Add(new Platform(_platform4, new Vector2(50, 900), false));
+                    
+                    _platforms.Add(new Platform(_platform1, new Vector2(450, 750), false));
+                    _platforms.Add(new Platform(_platform3, new Vector2(700, 580), true)); 
+
+                    _platforms.Add(new Platform(_platform2, new Vector2(1050, 450), true));
+                    _platforms.Add(new Platform(_platform2, new Vector2(1240, 450), true));
+
+                    _platforms.Add(new Platform(_platform4, new Vector2(1700, 800), false));
+                    _enemies.Add(new Enemy(_enemyWalkSprite, _enemyDeathSprite, new Vector2(1100, 350), 100f, _platforms));
                     break;
+                    
                 case 2:
-                    _platforms.Add(new Platform(new Rectangle(500, 750, 200, 50), _pixel, Color.Gray));
-                    _platforms.Add(new Platform(new Rectangle(900, 600, 500, 50), _pixel, Color.Gray));
-                    _platforms.Add(new Platform(new Rectangle(1600, 850, 300, 50), _pixel, Color.Gray));
-                    _enemies.Add(new Enemy(_enemyWalkSprite, _enemyDeathSprite, new Vector2(1000, 520), 150f, _platforms)); 
+                    _platforms.Add(new Platform(_platform4, new Vector2(50, 850), false));
+                    _platforms.Add(new Platform(_platform1, new Vector2(350, 700), false)); 
+                    _platforms.Add(new Platform(_platform3, new Vector2(550, 500), true));  
+                    
+                    _platforms.Add(new Platform(_platform2, new Vector2(850, 750), true));
+                    _platforms.Add(new Platform(_platform2, new Vector2(1040, 750), true));
+
+                    _platforms.Add(new Platform(_platform1, new Vector2(1350, 600), false));
+                    _platforms.Add(new Platform(_platform4, new Vector2(1650, 400), false)); 
+
+                    _enemies.Add(new Enemy(_enemyWalkSprite, _enemyDeathSprite, new Vector2(900, 667), 100f, _platforms));
+                    
+                    _enemies.Add(new Enemy(_enemyWalkSprite, _enemyDeathSprite, new Vector2(1625, 305), 70f, _platforms));
                     break;
+
                 case 3:
-                    _platforms.Add(new Platform(new Rectangle(500, 850, 300, 50), _pixel, Color.Gray));
-                    _platforms.Add(new Platform(new Rectangle(1000, 700, 300, 50), _pixel, Color.Gray));
-                    _platforms.Add(new Platform(new Rectangle(1500, 550, 300, 50), _pixel, Color.Gray));
-                    _enemies.Add(new Enemy(_enemyWalkSprite, _enemyDeathSprite, new Vector2(1050, 620), 50f, _platforms)); 
-                    _collectibles.Add(new Collectible(new Rectangle(1650, 500, 40, 40), _goldDaggerSprite, true));
+                    _platforms.Add(new Platform(_platform4, new Vector2(50, 850), false));    
+                    _platforms.Add(new Platform(_platform1, new Vector2(420, 750), false));   
+                    _platforms.Add(new Platform(_platform3, new Vector2(750, 600), true));    
+                    
+                    _platforms.Add(new Platform(_platform2, new Vector2(1150, 600), true));  
+                    _enemies.Add(new Enemy(_enemyWalkSprite, _enemyDeathSprite, new Vector2(1150, 517), 60f, _platforms));
+                    
+                    _platforms.Add(new Platform(_platform1, new Vector2(1500, 500), false)); 
+
+                    _platforms.Add(new Platform(_platform4, new Vector2(1700, 350), false));  
+                    _enemies.Add(new Enemy(_enemyWalkSprite, _enemyDeathSprite, new Vector2(1710, 255), 60f, _platforms));
+
+                    _platforms.Add(new Platform(_platform1, new Vector2(1350, 250), false));  
+                    _platforms.Add(new Platform(_platform3, new Vector2(900, 200), true));  
+
+                    _platforms.Add(new Platform(_platform4, new Vector2(500, 200), false));   
+                    _enemies.Add(new Enemy(_enemyWalkSprite, _enemyDeathSprite, new Vector2(490, 105), 70f, _platforms));
+                    
+                    _collectibles.Add(new Collectible(new Rectangle(550, 180, 40, 40), _goldDaggerSprite, true));
                     break;
             }
         }
@@ -188,14 +234,33 @@ namespace FinalProject
 
         private void HandleCollisions()
         {
-            foreach (var platform in _platforms)
+            if (_player.Velocity.Y > 0)
             {
-                if (_player.Bounds.Intersects(platform.Bounds) && _player.Velocity.Y > 0)
+                foreach (var platform in _platforms)
                 {
-                    if (_player.Position.Y + _player.Bounds.Height - platform.Bounds.Top < 30)
+                    if (_player.Bounds.Intersects(platform.Bounds))
                     {
-                        _player.Position.Y = platform.Bounds.Top - _player.Bounds.Height;
-                        _player.ResetJump();
+                        if (_player.Bounds.Bottom - platform.Bounds.Top < 30)
+                        {
+                            _player.Position.Y = platform.Bounds.Top - _player.Bounds.Height;
+                            _player.Velocity.Y = 0f;
+                            _player.ResetJump();
+                            break; 
+                        }
+                    }
+                }
+            }
+
+            foreach (var enemy in _enemies)
+            {
+                enemy.Position.Y += 5f; 
+
+                foreach (var platform in _platforms)
+                {
+                    if (enemy.Bounds.Intersects(platform.Bounds))
+                    {
+                        enemy.Position.Y = platform.Bounds.Top - enemy.Bounds.Height;
+                        break; 
                     }
                 }
             }
@@ -230,12 +295,12 @@ namespace FinalProject
                 }
             }
         }
-
+    
         protected override void Draw(GameTime gameTime)
         {
             if (_currentState == GameState.GameOver) GraphicsDevice.Clear(Color.DarkRed);
             else if (_currentState == GameState.Win) GraphicsDevice.Clear(Color.Gold);
-            else GraphicsDevice.Clear(Color.CornflowerBlue);
+            else GraphicsDevice.Clear(Color.CornflowerBlue); 
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
@@ -247,13 +312,27 @@ namespace FinalProject
                     break;
 
                 case GameState.Playing:
-                    foreach (var p in _platforms) p.Draw(_spriteBatch);
+                    Rectangle screenRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+                    
+                    _spriteBatch.Draw(_bgClouds, screenRect, Color.White);       
+
+                    if (_currentLevel == 3)
+                    {
+                        _spriteBatch.Draw(_bgDarkFacility, screenRect, Color.White); 
+                    }
+
+                    _spriteBatch.Draw(_bgStructures, screenRect, Color.White);
+
+                    foreach (var p in _platforms)
+                    {
+                        p.Draw(_spriteBatch);
+                    }
+                    
                     foreach (var e in _enemies) e.Draw(_spriteBatch);
                     foreach (var c in _collectibles) c.Draw(_spriteBatch);
                     foreach (var d in _daggers) d.Draw(_spriteBatch);
                     _player.Draw(_spriteBatch);
 
-                    // English UI 
                     _spriteBatch.DrawString(_font, $"LIVES: {_player.Lives}", new Vector2(30, 30), Color.White);
                     _spriteBatch.DrawString(_font, $"DAGGERS: {_player.DaggerCount}", new Vector2(30, 70), Color.White);
                     _spriteBatch.DrawString(_font, $"LEVEL: {_currentLevel}", new Vector2(900, 30), Color.White);
